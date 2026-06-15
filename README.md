@@ -1,4 +1,4 @@
-# Projetos
+# Projects
 Esse repositório foi criado para eu hospedar meus projetos pessoais, profissionais e acadêmicos. Aqui você encontrará códigos e soluções desenvolvidos por mim, englobando desde projetos de software até soluções voltadas para hardware e robótica. O objetivo principal é acompanhar minha evolução técnica e compartilhar conhecimento, além de servir como um portfólio da minha jornada na programação e como um estudante de Engenharia da Computação na Universidade de Brasília (UnB).
 
 <details>
