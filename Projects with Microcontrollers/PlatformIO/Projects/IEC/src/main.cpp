@@ -1,18 +1,41 @@
 #include <Arduino.h>
+#include <HTTPClient.h>
+#include <WiFiClientSecure.h>
+#include <UrlEncode.h>
 
-// put function declarations here:
-int myFunction(int, int);
+  const char* ssid = "SLA";
+  const char* senha = "12345678";
 
+  const String token = "8912011811:AAG2yLOeoX7Gy8O2eRHHbE4tcqdEu3o5hi4";
+  const String id_chat = "-5362315859";
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(9600);
+  WiFi.begin(ssid, senha);
+
+  while(WiFi.status() != WL_CONNECTED){
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("ESP32 conectado ao wifi");
+  Serial.println("IP: ");
+  Serial.print(WiFi.localIP());
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+    WiFiClientSecure cliente;
+    cliente.setInsecure();
+    HTTPClient https;
+
+    String mensagem = "Teste";
+    String url = "https://api.telegram.org/bot" + token + "/sendMessage?chat_id=" + id_chat + "&parse_mode=Markdown&text=" + urlEncode(mensagem);
+    https.begin(cliente,url);
+
+    int respostaHTTP = https.GET();
+
+    if(respostaHTTP > 0){
+      Serial.println("Mensagem Enviada!");
+    }
+      https.end();
+      delay(5000);
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
-}
